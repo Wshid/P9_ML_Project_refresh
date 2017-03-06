@@ -3,16 +3,20 @@
     1601_weather_price // 1601_weather_csv + 16_oil_price
     ```
 
-2. subway데이터에서 모든 목록을 distinct화해서 역 리스트를 출력한다.
+2. subway데이터에서 모든 목록을 distinct화해서 역 리스트를 출력한다.(p9_data_03_subway_list.csv)
         ```
-        val raw_text=sc.textFile("/home/ubuntu/workspace/project/download/raw_data/2016_subway/subway_list.csv")
-        raw_text.distinct().saveAsTextFile("/home/ubuntu/workspace/project/download/raw_data/2016_subway/test.csv")
+        val raw_data=sc.textFile("/home/csxion/Desktop/project/data/p9_data_00_16_all_1d_subway.csv")
+	val subway_list=raw_data.map(_.split(",")(0))
+
+        subway_list.distinct().saveAsTextFile("/home/csxion/Desktop/project/data/p9_data_03_subway_list")
         ```
 
-3. weather에서 distinct를 이용하여 기상 관측지점 리스트를 출력한다.
+3. weather에서 distinct를 이용하여 기상 관측지점 리스트를 출력한다.(p9_data_04_weather_list.csv)
         ```
-        val raw_text=sc.textFile("/home/ubuntu/workspace/project/download/raw_data/2016_weather/weather_list.csv")
-        raw_text.distinct().saveAsTextFile("/home/ubuntu/workspace/project/download/raw_data/2016_weather/test.csv")
+val raw_data=sc.textFile("/home/csxion/Desktop/project/raw_data/2016_weather/1601_weather.csv")
+val weather_list=raw_data.map(_.split(",")(1))
+
+weather_list.distinct().saveAsTextFile("/home/csxion/Desktop/project/data/p9_data_04_weather_list")
         ```
 
 2. 역명에 따른 기상데이터 포인트 추천 데이터를 생성한다.

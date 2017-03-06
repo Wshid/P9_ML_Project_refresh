@@ -75,9 +75,8 @@ def represent_location(object_data, compare_data, write_file_name):
     
 if __name__=="__main__":
     
-    #절대 경로로하니까 파일은 찾으나 구동이 안됨
-    load_location('weather', 'raw_weather.csv', 'location_weather.csv')
-    load_location('subway', 'raw_subway.csv', 'location_subway.csv')
-    represent_location('location_subway.csv', 'location_weather.csv', 'represent_data.csv')   
+    load_location('weather', '/home/csxion/Desktop/project/data/p9_data_04_weather_list.csv', '/home/csxion/Desktop/project/data/p9_data_05_location_weather.csv')
+    load_location('subway', '/home/csxion/Desktop/project/data/p9_data_03_subway_list.csv', 'home/csxion/Desktop/project/data/p9_data_06_location_subway.csv')
+    represent_location('/home/csxion/Desktop/project/data/p9_data_06_location_subway.csv', '/home/csxion/Desktop/project/data/p9_data_05_location_weather.csv', '/home/csxion/Desktop/project/data/p9_data_07_represent_data.csv')   
     #print(s_data)
 

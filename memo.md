@@ -412,3 +412,36 @@
     어느정도 정확도가 많이 올라간것으로 판별됨
     이후 evaluate 함수를 구성하여, 각 변수별로 설정할 시, 어떤 값에 따라 optimization되는지 확인할 것
 
+17/03/06
+	dinstinct()로 했을때도 중복되는 데이터는, 역명은 같으나 호선이 다른 환승역이었음. 이 데이터를 처리하기 위해서 처음부터 raw_data를 재구성 해야함
+	데이터 전면 재배치, 파이썬으로 역(코드)데이터를 최적화하려 했으나, 유니코드 및 subway데이터 내부 숫자가 ""로 싸여있는 것 때문에 엑셀을 사용해야함
+	따라서 01~12에 대한 데이터 역(코드) => 역으로 변환하여 모든 데이터 수동 취합 실시
+	_/data/16XX_name_subway.csv_
+		=IF(RIGHT(LEFT(A2,LEN(A2)-5),1)="역",LEFT(A2,LEN(A2)-5),LEFT(A2,LEN(A2)-5)&"역")
+	이후 partial_sum.csv의 코드를 변형하여, 부분합을 먼저 진행후, 스크립트 명령어를 통하여 하나로 합친다(16_all_1d_partial.csv)
+
+	일부 깨진 데이터에 대하여 수정 작업을 거친다
+	weather역시 월별로 합치도록 한다
+
+	weather 및 subway관련, geocoding code 다시 실행하기
+		p9_data_05_location_weather.csv
+		p9_data_06_location_subway.csv
+		p9_data_07_represent_data.csv
+
+	weather 및 oil_Data merge 실시
+	=VLOOKUP($C2,oil_price!$A$2:$E$367,COLUMN(oil_price!B1)-COLUMN(oil_price!$A$1)+1,0)
+
+	12월까지의 데이터가 모두 담기게 되면서, 파일의 규모가 매우 커짐(대략 레코드만 해도, 76만여개)
+	파일의 규모가 커지면서 MEM이 8GB인 컴퓨터도 버거워 하는 지경에 다다름
+		-> 일단 정규화 과정만 한 파일에 통합하여 진행
+	이후 data를 각 분기(quarter)별로 나누어 저장 => 각각 20MB의 파일 크기를 가지게 됨
+	열 구성 (역명, 날짜, 시간, s온도, s강수량, s풍속, s고급휘발유, s보통휘발유, s자동차용경유, s실내등유, 인원
+		역명, 시간 : 카테코리 특징(DecisionTree) => 바이너리 벡터(LinearModel)
+		날짜 : 항목 제외
+		s데이터 : 각각 정규화된 데이터로, 특징 벡터를 구성
+	
+	Git제출 실시  : each of raw_data(quarter) complete
+
+
+
+
