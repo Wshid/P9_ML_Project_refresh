@@ -442,6 +442,26 @@
 	
 	Git제출 실시  : each of raw_data(quarter) complete
 
-
-
-
+17/03/07
+    코드 파일 최적화 및 재구성 실시 -> p9_code_01_model_RDD.ipynb
+    p9_code와 같은 네이밍 파일 작성 완료
+    sed 1d를 이용하여 p9_code_11_... 작업 완료
+    wholetextFile을 이용하여 raw_data를 치환하고 돌리려 했으나, 끝내 memory 부족 문제로 구현되지 않음
+    
+    RDD의 경우 1/4로 제한하고
+    DataFrame의 경우, 활용방법을 익힌 뒤, 모든 내용을 학습할 수 있도록 할 것
+    
+17/03/13
+    실제 로컬머신 접속 성공 RDD 관련 작업 실시하기
+    모델을 저장해보고, 로드하면서 타 데이터에 대해 테스트 해보기
+    1/4분기 최적 트레이닝 이후. 2/4에서 테스트
+    
+    training하는 데이터와 test데이터에 전반적인 이격이 존재하므로, 제대로 예측하지 못함
+    각 분기별로 train을 만들고 test를 시행하는것이 맞음
+    
+    DataFrame Model에 대해 확인해보기
+    비교적 RDD보다 최적화된 값을 확인할 수 있었음
+    https://spark.apache.org/docs/latest/api/python/pyspark.ml.html#pyspark.ml.regression.LinearRegression
+    
+    하지만, label값이 낮은경우, 상당한 양의 오차가 발생함
+  
