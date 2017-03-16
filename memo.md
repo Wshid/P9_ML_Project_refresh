@@ -464,4 +464,37 @@
     https://spark.apache.org/docs/latest/api/python/pyspark.ml.html#pyspark.ml.regression.LinearRegression
     
     하지만, label값이 낮은경우, 상당한 양의 오차가 발생함
-  
+
+17/03/14
+    테스트 메소드를 사용하여, .rdd형태 변환후 테스트 시작
+    커널창에서 메모리가 부족하는 메세지와 함께, 정상적인 입력값에도 nan이라는 값이 뜸
+    메모리 부족이 나지 않도록 DF에서 처리하는 방법 구상하기
+    
+    같은 내용으로 파악했으나, evaluate를 사용시에 무조건 에러가 남(예측값이 다르다는 것)
+    테스트 메소드를 작성하면 일종의 버그 현상이 일어나는 듯함
+    일일히 수동으로 값을 체크하여 변화를 검사하는 방식으로 활용하기로
+   
+17/03/15
+    Trouble Shooting
+    for문 형식으로 구성하여, 추가 사용자 함수를 사용하지 않고 테스트 시작
+    변형되는 변수는 maxIter, elasticNetParams, regParam으로 한정
+    select('label', prediction')문제로 판별 -> 근데 이건 당연한거 아닌가 싶은데
+    
+    #### 애초에 변수값이 잘못된 것으로 확인됨
+    ##### 실상 에러가 안날때는 label과 features와 비교를 하게 되는데, 이것으로써는 prediction값을 활용한 예측 변수 비교가 불가능함
+    맞는 기존 값을 찾는것이 우선일 듯
+    
+17/03/16
+    pyspark --driver-memory 3g // 이걸 이용하면 driver-memory를 늘려서 사용할 수 있을지?
+    일단 driver memory를 늘리니, 에러는 발생하지 않는듯 함
+    code 04를 생성하여, rdd에서 구현하기로. 그냥 dataframe은 맛만 // 본 목적에 부합하지 않은듯
+    model.toDebugString을 활용하여 각 트리에 대한 정보를 확인할 수 있었음
+    
+    추후 모든 파일에 대하여 markdown을 활용한 최적화 실시하기로
+    일단은 주석을 활용하여 구분한다.
+    
+    실행시간이 오래걸리므로, 실행중에 타 알고리즘에 대해 정보를 입력해놓는 식으로 하여 시간을 줄인다.
+    
+    RandomForest에대하여 최적값 구하기 완료
+    
+    일단 gradient Descent이론부터 다시 시작하기로,
