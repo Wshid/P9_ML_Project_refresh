@@ -498,3 +498,25 @@
     RandomForest에대하여 최적값 구하기 완료
     
     일단 gradient Descent이론부터 다시 시작하기로,
+    
+    그 전에, data_dt를 기준으로 했어야했는데 data를 기준으로 학습. 다시 해보기..
+    시간이 생각보다 많이 걸리는 것을 유의할 것
+    
+    numTree 진행 완료
+    maxDepth부터 다시하면됨
+
+17/03/17 실행구문 변경
+    pyspark --driver-memory 4g --driver-cores 2
+    maxdepth=30으로 실험시, 에러가 발생함(Executor heartbeat timed out after 234804 ms) 대략 특정 시간 이상 상주하기 때문으로 판별
+    실제로 maxDepth관련 구문을 볼때, 10에서 기울기 값이 증가하지는 않지만 overfitting 사전 결과로 판단되어, optimized maxdepth=10으로 결론
+    
+    Gradient Boostring Tree,
+        NumIterations 변수를 500가까이 설정하니, memory 초과로 에러 발생,
+        Kernel Restart 이후 값 낮추어 실행하기
+    
+    무조건 .ipynb 파일 실행시, 무조건 처음부터 실행하는 것이 아니라 내용을 독립적으로 구성하여 실행할 것
+    memory상에 올라가있는 연산이 많은데 지속 실행시 무조건 중간에 Mem out이 되는 경우가 잦음
+    
+    상단구문에서 %pyplot inline -> %matplotlib inline로 변경
+    
+    Learning Rate와 numIterations는 Tradeoff 관계가 있으므로 확인할 것
