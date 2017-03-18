@@ -520,3 +520,16 @@
     상단구문에서 %pyplot inline -> %matplotlib inline로 변경
     
     Learning Rate와 numIterations는 Tradeoff 관계가 있으므로 확인할 것
+    
+17/03/18
+    실행구문 커맨드 라인 지속 변경하기
+    RandomForest, Gradient Descent 최적화 작업 완료
+    
+    문서의 항목 및 내용 정리하기
+    
+    code_04에 대하여 fig.set_size 적용하여 재구성 완료
+    앞으로 RDD 및 DataFrame 관련 파일 정리하기
+    
+    코드 모든 파일에 대하여 정리 완료
+    프로젝트 종료일까지 3일, 추가 데이터에 대해 생각해보기
+    Git Commit 완료
