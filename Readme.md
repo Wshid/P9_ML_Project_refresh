@@ -13,10 +13,10 @@ Visit http://docs.c9.io for support, or to learn more about using Cloud9 IDE.
 To watch some training videos, visit http://www.youtube.com/user/c9ide
 
 _Specifications_
-    Ubuntu 14.04.03 x_64
-    disk : 5gb
-    memory : 1gb
-    Tools : Spark
+    OS : Ubuntu 16.04.2 LTS x_64
+    disk : 40gb
+    memory : 4gb
+    Tools : Spark(v2.1.0), Google Geocoding API, Cloud9, Jupyter(v4.3.0), Python(v3.5.2), Scala(2.12.1), Java(v1.8.0_102), Maven(v3.3.9), SBT(v0.13.13), Microsoft Office Excel 2016
 
 _Sioncerely 9th Project - Machine Learning with Spark_
 
